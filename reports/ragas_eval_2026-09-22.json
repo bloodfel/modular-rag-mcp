@@ -1,0 +1,856 @@
+{
+  "generated_at": "2026-09-22T09:58:35+00:00",
+  "collection": "project_docs_ci",
+  "test_set": "tests/fixtures/golden_ragas_set.json",
+  "top_k": 5,
+  "cases": 60,
+  "failed": 0,
+  "aggregate": {
+    "faithfulness": 0.9611,
+    "answer_relevancy": 0.7602,
+    "context_precision": 0.78,
+    "context_recall": 0.9167
+  },
+  "results": [
+    {
+      "query": "子功能 Spec 的阶段总览中，当前从哪个字母编号起？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7704425698969369,
+        "context_precision": 0.7499999999625,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "当前从 K 起。",
+      "retrieved": 5,
+      "trace_id": "1e5dd9bd-137e-473a-b077-2d2d24f63be1",
+      "scores_written": 4
+    },
+    {
+      "query": "B2 中 EmbeddingFactory.create 的签名是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7245643136047556,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "EmbeddingFactory.create(settings) -> BaseEmbedding",
+      "retrieved": 5,
+      "trace_id": "6061d073-2cd9-4622-9459-1b2f793a4ccb",
+      "scores_written": 4
+    },
+    {
+      "query": "在 config/settings.yaml 中，把重排换成 Jev 时，rerank 的 provider 可以取哪些值？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5602589003334129,
+        "context_precision": 0.94999999997625,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "provider 可以取：none、cross_encoder、llm、jev。",
+      "retrieved": 5,
+      "trace_id": "8fb29634-5c15-45d0-9794-3a7985a09029",
+      "scores_written": 3
+    },
+    {
+      "query": "在 ingestion 配置中，chunk_overlap 的作用是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8957827252446474,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "chunk_overlap 的作用是让相邻块之间保留重叠内容，防止语义被截断。",
+      "retrieved": 5,
+      "trace_id": "9e3ce213-f627-4b81-bbe7-7f2453048e67",
+      "scores_written": 4
+    },
+    {
+      "query": "基准运行器对每个 reranker 的重排深度是多少，为什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.665751599661,
+        "context_precision": 0.8666666666377778,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "重排深度是 10（depth=10）。原因是公平对比，且符合 Jev 单次 ≤10 候选的约束。",
+      "retrieved": 5,
+      "trace_id": "e5a7ed79-69a2-4e99-a361-9773a15e5556",
+      "scores_written": 4
+    },
+    {
+      "query": "K3 任务的完成日期和备注分别是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9779079112008097,
+        "context_precision": 0.36666666664833336,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "K3 任务的完成日期是 2026-09-22，备注是“5单元测试+docs/specs/2026-09-21-langfuse-mvp-design.md 末尾Runbook”。",
+      "retrieved": 5,
+      "trace_id": "ef91858f-fbb5-49fb-bab8-f8b50b635331",
+      "scores_written": 4
+    },
+    {
+      "query": "在 UI 上，chunk_refiner#2 里的 #2 表示什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6686929726514538,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "#2 表示该阶段的第几个调用，按完成顺序编号（并行跑，不一定是第几块）。",
+      "retrieved": 5,
+      "trace_id": "27207d7b-e46b-42ec-b393-e1a9761fc736",
+      "scores_written": 4
+    },
+    {
+      "query": "这份设计文档的日期和状态分别是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8302994902385287,
+        "context_precision": 0.3333333333,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "日期是 2026-09-21，状态是执行中。",
+      "retrieved": 5,
+      "trace_id": "8ea67f95-3308-492f-9fe2-f893a7e8048c",
+      "scores_written": 4
+    },
+    {
+      "query": "若 PDF 包含图片，图片应保存到什么目录，Document.text 中图片位置插入什么占位符？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9040611841002962,
+        "context_precision": 0.8333333332916666,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "若 PDF 包含图片，应提取图片并保存到 `data/images/{doc_hash}/` 目录；在 `Document.text` 中，图片位置插入占位符 `[IMAGE: {image_id}]`。",
+      "retrieved": 5,
+      "trace_id": "0f04a099-9bef-4638-ae54-2de6311b305a",
+      "scores_written": 4
+    },
+    {
+      "query": "在 scifact 数据集上，hybrid 方法的 nDCG 是多少？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7591264354938457,
+        "context_precision": 0.3333333333,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "资料中 scifact/hybrid 的 nDCG@10 数据为：none 67.40、bge 67.19、jev 72.02、llm 69.68。",
+      "retrieved": 5,
+      "trace_id": "fbdb0f5d-a191-45b7-85e0-a08be67e652d",
+      "scores_written": 4
+    },
+    {
+      "query": "换 embedding 模型后为什么必须重新灌库？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9969560592463106,
+        "context_precision": 0.699999999965,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "换 embedding 模型后必须重新灌库，是因为新旧向量的维度和向量空间不同，不能混存。",
+      "retrieved": 5,
+      "trace_id": "bbffb8af-b092-4eee-9fe1-edd152584980",
+      "scores_written": 4
+    },
+    {
+      "query": "JevReranker 调用 REST 接口时，state 和 questions 分别对应什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6533555109557686,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "state 对应 query 文本；questions 对应每个候选一条 Score 问题（有序档位 1-10 相关性）。",
+      "retrieved": 5,
+      "trace_id": "691a1c0a-d292-4440-8d78-c160a29dbf56",
+      "scores_written": 4
+    },
+    {
+      "query": "`LANGFUSE_HOST` 配置在哪个位置，值是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8448755307661976,
+        "context_precision": 0.9166666666361111,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "`LANGFUSE_HOST` 配置在 `.env` 文件中。自托管时值为 `http://localhost:3000`；使用 Langfuse Cloud 时值为 `https://jp.cloud.langfuse.com`（日本区，欧/美区需改域名）。",
+      "retrieved": 5,
+      "trace_id": "ace46cae-f434-4bb2-987d-7d78f6a80151",
+      "scores_written": 4
+    },
+    {
+      "query": "验收标准中，`pytest tests/unit` 的基线通过数和当前通过数分别是多少？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.539181984943954,
+        "context_precision": 0.3333333333,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "基线是 29 failed / 1222 passed，当前是 29 failed / 1263 passed。",
+      "retrieved": 5,
+      "trace_id": "efd69339-e9cb-4e3b-b8d8-eaa62b2d8431",
+      "scores_written": 4
+    },
+    {
+      "query": "Embedding 模型与 Rerank 模型支持哪些云端服务和本地模型？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7239193819832795,
+        "context_precision": 0.7499999999625,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "支持云端服务 OpenAI Embedding、Cohere Rerank，以及本地模型 Sentence-Transformers、BGE。",
+      "retrieved": 5,
+      "trace_id": "e5fabf78-e777-49cb-8ad5-20c445ed43de",
+      "scores_written": 4
+    },
+    {
+      "query": "Libs 可插拔层中 Reranker 支持哪些选项？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8735283633429106,
+        "context_precision": 0.49999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Reranker 支持 none、cross_encoder、llm、jev 四种选项。",
+      "retrieved": 5,
+      "trace_id": "f08fb58f-0dca-4b9b-93da-0f9cb7f67e48",
+      "scores_written": 4
+    },
+    {
+      "query": "在 rerank 配置中，provider 为 jev 时，min_score 的作用是什么？基准中做纯排序对比建议用多少？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7210656959040623,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "min_score 是质量门：低于该阈值的候选会被过滤掉，不参与最终排序。基准中做纯排序对比建议用 1.0。",
+      "retrieved": 5,
+      "trace_id": "6d2f48e2-ccd4-468e-b94d-2295517a388a",
+      "scores_written": 4
+    },
+    {
+      "query": "指标模块 `src/observability/evaluation/metrics.py` 中，`ndcg_at_k` 在 qrels 为空时返回什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7365639824793483,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "qrels 为空时返回 0.0。",
+      "retrieved": 5,
+      "trace_id": "201a0154-7e21-4165-9e7c-fdca1293a023",
+      "scores_written": 4
+    },
+    {
+      "query": "Langfuse 可观测 MVP 的导出器新建在哪个文件，它读取什么并映射为什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6800937252464702,
+        "context_precision": 0.6999999999766667,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "导出器新建在 scripts/export_langfuse.py，它读取 logs/traces.jsonl，把每条 trace 映射为 Langfuse trace 加每阶段一个 span（输入/输出/耗时/元数据）。",
+      "retrieved": 5,
+      "trace_id": "63f0f97b-015b-49e8-9ff8-35e7d5ad22d7",
+      "scores_written": 4
+    },
+    {
+      "query": "Langfuse 云端按类型显示时，UI 上确认的模型名称、prompt 到 completion 的 token 数、耗时和成本分别是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.518046699382497,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "模型名称是 glm-4-flash，token 数是 242 prompt → 70 completion，耗时 4.62s，成本是 $0.00（GLM 免费额度，符合预期）。",
+      "retrieved": 5,
+      "trace_id": "d17fac0c-9f0a-48d7-936f-d40302b90e4d",
+      "scores_written": 4
+    },
+    {
+      "query": "在 `Document.text` 中，图片位置使用什么格式标记？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6136579237891939,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "图片位置使用 `[IMAGE: {image_id}]` 格式标记。",
+      "retrieved": 5,
+      "trace_id": "0fe5fb9f-13a5-4ffc-89bc-648fe81a01e4",
+      "scores_written": 4
+    },
+    {
+      "query": "如何把本地 trace 导入 Langfuse？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999999999999997,
+        "context_precision": 0.9999999999666667,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "把本地 trace 导入 Langfuse 有两种方式：\n\n1. 实时上报：运行 `scripts/query.py --query \"...\" --langfuse`，查询后同步导出该次 trace；或在 Streamlit 的 Query Playground 打开「实时上报 Langfuse」开关。\n\n2. 事后批量导出：运行 `scripts/export_langfuse.py --last 5`，读取 `logs/traces.jsonl`，把每条 trace 映射为 Langfuse trace 及每阶段一个 span 上报。\n\n使用前需在 `.env` 配置 `LANGFUSE_PUBLIC_KEY`、`LANGFUSE_SECRET_KEY` 和 `LANGFUSE_HOST`。",
+      "retrieved": 5,
+      "trace_id": "5d9f8db1-75d4-4adb-abd7-be7e6e321c72",
+      "scores_written": 4
+    },
+    {
+      "query": "在“全本地零成本”配方中，llm、embedding 和 rerank 分别配置为什么？",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      },
+      "error": null,
+      "answer": "资料中没有足够信息。",
+      "retrieved": 5,
+      "trace_id": "5facee2f-78ea-4e46-ba60-6c451cdd2142",
+      "scores_written": 4
+    },
+    {
+      "query": "J1、J2、J3 之间是什么关系？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9982139520623369,
+        "context_precision": 0.9999999999666667,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "J1、J2、J3 之间没有相互依赖关系，可以并行开展。它们都依赖 J5（J1 → J5；J2/J3 → J5）。",
+      "retrieved": 5,
+      "trace_id": "004d8085-1de5-412f-9f90-ee79ae440628",
+      "scores_written": 4
+    },
+    {
+      "query": "新建的 Langfuse 组织（2026-09-16 之后创建）调用 legacy API 会返回什么错误？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9722764426560384,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "新建的 Langfuse 组织（2026-09-16 之后创建）调用 legacy API 会返回 410 错误，错误码为 LEGACY_API_UNAVAILABLE_FOR_NEW_ORGANIZATION。例如 GET /api/public/traces 是 legacy API，替代接口为 GET /api/public/v2/observations。",
+      "retrieved": 5,
+      "trace_id": "12919b82-18a3-4dc3-b2a1-857f456a8a95",
+      "scores_written": 4
+    },
+    {
+      "query": "为什么本项目要手写 OTLP，而不照官方博客那样写？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9252133116420796,
+        "context_precision": 0.7499999999625,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "本项目要手写 OTLP，是因为官方博客那种短写法依赖两个本项目不成立的前提：一是它用 LangChain，CallbackHandler 能自动抓取每次 LLM 调用的模型、token、耗时，而本项目是自研可插拔架构，LLM 调用直接用 httpx，没有框架帮忙抓，只能自己插桩；二是它的代码能包成上下文管理器实时测量起止时间，而本项目的阶段是事后记账，26 处 record_stage 都在阶段结束后才调用，stage_timer 这类上下文管理器只写在 docstring 里、从未实现。\n\n同时，官方 SDK 的 start_observation 没有 start_time 参数，也拿不到底层 OTel span 走后门，把已跑完的历史记录回放给 SDK 会让所有 span 都被盖成“现在”，瀑布图就废了。而 OTLP 支持显式时间戳，能忠实还原已经跑完的调用，这就是手写 OTLP 的唯一原因。",
+      "retrieved": 5,
+      "trace_id": "f7fd3207-b0c9-442e-81f5-588ef6dda164",
+      "scores_written": 4
+    },
+    {
+      "query": "Splitter 阶段如何保持图文关联？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999999999999997,
+        "context_precision": 0.94999999997625,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Splitter 阶段保持图文关联的方式包括：图片引用标记应与其说明性文字（Caption、前后段落）尽量保持在同一 Chunk 中；若图片出现在章节开头或结尾，切分时应将其归入语义上最相关的 Chunk；每个 Chunk 的 Metadata 中增加 image_refs 字段，记录该 Chunk 关联的图片列表，用于后续 Transform 阶段定位需要处理的图片，以及检索命中后定位需要返回的图片。",
+      "retrieved": 5,
+      "trace_id": "e111235b-87a0-4d1b-9dcc-bfca075ae206",
+      "scores_written": 4
+    },
+    {
+      "query": "Embedding 默认走什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9952015428410089,
+        "context_precision": 0.9999999999666667,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Embedding 默认走本地 Ollama，模型为 nomic-embed-text，离线可用；也可在 config/settings.yaml 切换为云端。",
+      "retrieved": 5,
+      "trace_id": "5720bc1e-7f35-4ea2-b14e-c5a23b977e24",
+      "scores_written": 4
+    },
+    {
+      "query": "llm 配置块中，temperature 字段在重排/打分类任务中建议设置为什么值？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.41014397184654977,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "0.0",
+      "retrieved": 5,
+      "trace_id": "388e0be6-0594-4628-9b7f-4746e70765e8",
+      "scores_written": 4
+    },
+    {
+      "query": "CrossEncoderReranker 验证中，模型配置为什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.3447974297465431,
+        "context_precision": 0.8666666666377778,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "模型配置为 BAAI/bge-reranker-base，本地推理，免费。",
+      "retrieved": 5,
+      "trace_id": "73975c4c-fada-42bc-8b17-6fee40996a1c",
+      "scores_written": 4
+    },
+    {
+      "query": "新建的 Langfuse 组织（2026-09-16 之后创建）调用 legacy API 会返回什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9719029170439627,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "新建的 Langfuse 组织（2026-09-16 之后创建）调用 legacy API 会返回 410 LEGACY_API_UNAVAILABLE_FOR_NEW_ORGANIZATION，例如 GET /api/public/traces 是 legacy API，替代接口为 GET /api/public/v2/observations。",
+      "retrieved": 5,
+      "trace_id": "1d332599-85c4-4427-985b-f3eca9c278d7",
+      "scores_written": 4
+    },
+    {
+      "query": "本项目当前采用的召回策略是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9817910272364166,
+        "context_precision": 0.4499999999775,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "本项目当前采用混合召回 + 精排（Hybrid + Rerank）策略：并行执行稠密召回和稀疏召回，使用 RRF 算法融合两路结果，再对融合后的候选集进行精排重排序。",
+      "retrieved": 5,
+      "trace_id": "7289ae2c-e953-4e08-b9ec-d12e250322b1",
+      "scores_written": 4
+    },
+    {
+      "query": "在 BEIR 的 scifact/bm25 上，哪种重排方案的 nDCG@10 ×100 最高，数值是多少？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999999999999997,
+        "context_precision": 0.3333333333,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "在 BEIR 的 scifact/bm25 上，jev 重排方案的 nDCG@10 ×100 最高，数值是 73.29。",
+      "retrieved": 5,
+      "trace_id": "dd5fc292-7149-4030-8b1d-6e594a730310",
+      "scores_written": 4
+    },
+    {
+      "query": "rerank.min_score 在 settings.yaml 中的默认值是多少？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.999999999975,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "资料中关于默认值有两种说法：一处配置示例写的是 1.0，另一处配置汇总表写的是默认 4。资料中没有足够信息确定唯一的默认值。",
+      "retrieved": 5,
+      "trace_id": "682c71f7-e1f4-450d-9219-73396e7a52cc",
+      "scores_written": 4
+    },
+    {
+      "query": "首次生成 `infra/langfuse/.env` 密钥时，需要为哪些变量用 `openssl rand -hex 16` 生成值？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5225121951562952,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "需要为 SALT、CLICKHOUSE_PASSWORD、MINIO_ROOT_PASSWORD 这三个变量用 `openssl rand -hex 16` 生成值。",
+      "retrieved": 5,
+      "trace_id": "8a8cc13e-73b5-4f1b-ba99-70e5ab5d2c97",
+      "scores_written": 4
+    },
+    {
+      "query": "在 Splitter 阶段，每个 Chunk 的 Metadata 中增加了哪个字段来记录该 Chunk 关联的图片列表？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8928368846586606,
+        "context_precision": 0.8874999999778125,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "每个 Chunk 的 Metadata 中增加了 `image_refs: List[image_id]` 字段，用于记录该 Chunk 关联的图片列表。",
+      "retrieved": 5,
+      "trace_id": "d7f54753-ea26-45dc-a33c-96df1f5df8bc",
+      "scores_written": 4
+    },
+    {
+      "query": "临时公网演示时，用什么命令一行获得公网 URL？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.43759662188056714,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "cloudflared tunnel --url http://localhost:8000",
+      "retrieved": 5,
+      "trace_id": "a40409df-4ec7-4c16-99d3-70cbb8f0a77b",
+      "scores_written": 4
+    },
+    {
+      "query": "Jev 单次超过 10 个候选会触发什么风险，如何缓解？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7739912679459121,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Jev 单次超过 10 个候选会触发 context rot 风险。缓解方式是 depth 固定为 10，并在代码中做硬限制。",
+      "retrieved": 5,
+      "trace_id": "358e0de3-0c90-493a-b75a-2c102d432ca2",
+      "scores_written": 4
+    },
+    {
+      "query": "I5 全链路 E2E 验收的验收标准包括哪些命令或展示要求？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9776916333789534,
+        "context_precision": 0.8333333332916666,
+        "context_recall": 0.0
+      },
+      "error": null,
+      "answer": "I5 全链路 E2E 验收的验收标准为：1198 单元测试 + 30 个 e2e 测试通过，并通过 ingest/query/evaluate 脚本验证。",
+      "retrieved": 5,
+      "trace_id": "8f7546e7-8bb2-45d2-ab0d-738508fe8c3f",
+      "scores_written": 4
+    },
+    {
+      "query": "在同批查询的速度与成本实测中，jev（API）的延迟 p50 和每千次查询费用分别是多少？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9399889712822794,
+        "context_precision": 0.7499999999625,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "jev（API）的延迟 p50 约为 1.5s，费用约为 $0.17/千次查询。",
+      "retrieved": 5,
+      "trace_id": "5b827737-10c7-4df2-966c-ca04dc7849bd",
+      "scores_written": 4
+    },
+    {
+      "query": "benchmark_rerank.py 对每个 dataset × retriever × reranker 组合执行什么流程，并记录哪些内容？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8667981653063853,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "对每个 dataset × retriever × reranker 组合：召回 top-10 → 重排 → 计算 nDCG@10 / MRR@10 / Hit@10，并记录延迟、token 用量、失败回退。",
+      "retrieved": 5,
+      "trace_id": "a33c5f53-bc32-4c12-a512-1bc0dc552508",
+      "scores_written": 4
+    },
+    {
+      "query": "Server 可以提供一个什么接口，让 Agent 在生成答案后自主调用以检测是否存在幻觉？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8886089068102118,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Server 可以提供一个 `self_check` 接口，让 Agent 在生成答案后自主调用，以检测是否存在幻觉，或者检索结果是否真正支撑了论点。",
+      "retrieved": 5,
+      "trace_id": "975ccc36-ebf8-45c6-8277-6e98ea6adc4f",
+      "scores_written": 4
+    },
+    {
+      "query": "Roadmap 中哪一项已经完成？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9464670729254419,
+        "context_precision": 0.49999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "资料中显示已完成的 Roadmap 项包括：阶段 C 的 C1、C2、C3、C4，阶段 J 的 J1、J2、J3、J4、J5，以及阶段 K 的 K1、K2、K3、K4。",
+      "retrieved": 5,
+      "trace_id": "b933421a-1e3d-4416-8e82-f7db45698ad1",
+      "scores_written": 4
+    },
+    {
+      "query": "验收标准中，哪一项标记为部分完成（[~]）？",
+      "scores": {
+        "faithfulness": 0.6666666666666666,
+        "answer_relevancy": 0.761186982048944,
+        "context_precision": 0.8055555555287036,
+        "context_recall": 0.0
+      },
+      "error": null,
+      "answer": "资料中没有足够信息。检索到的资料里，验收标准中的项目均标记为 `[x]` 或 `[ ]`，没有出现标记为 `[~]` 的验收标准项。",
+      "retrieved": 5,
+      "trace_id": "eea69d35-c4df-490e-875c-2b141410e85a",
+      "scores_written": 4
+    },
+    {
+      "query": "系统通过哪个文件统一配置各组件实现，支持零代码切换？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8924210082265799,
+        "context_precision": 0.19999999998,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "系统通过 config/settings.yaml 统一配置各组件实现，支持零代码切换。",
+      "retrieved": 5,
+      "trace_id": "752c7c59-e54c-4fbf-b495-a9e1da3a41c5",
+      "scores_written": 4
+    },
+    {
+      "query": "安装步骤中，创建虚拟环境并激活的命令是什么？",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      },
+      "error": null,
+      "answer": "资料中没有足够信息。",
+      "retrieved": 5,
+      "trace_id": "23015a64-62bf-4301-b5fb-5f47df564da8",
+      "scores_written": 4
+    },
+    {
+      "query": "本期基准测试的主指标是什么，辅指标有哪些？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6033877168025166,
+        "context_precision": 0.249999999975,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "主指标是 nDCG@10×100；辅指标有 MRR@10、Hit Rate@10、rerank 延迟（p50/p95）、估算成本（$/千查询）、失败回退率。",
+      "retrieved": 5,
+      "trace_id": "a2e5da58-aed1-4df2-809a-2b54188d8c0f",
+      "scores_written": 4
+    },
+    {
+      "query": "触发摄取时调用什么方法，其参数是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5436811242877847,
+        "context_precision": 0.7499999999625,
+        "context_recall": 0.0
+      },
+      "error": null,
+      "answer": "触发摄取时调用 `IngestionPipeline.run(on_progress=...)`，其中 `on_progress` 回调签名为 `on_progress(stage_name: str, current: int, total: int)`。",
+      "retrieved": 5,
+      "trace_id": "0732e900-f891-4b8b-84f9-9ddd5c5af530",
+      "scores_written": 4
+    },
+    {
+      "query": "在 B7.2 中，provider=ollama 时可由什么创建？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8783121644131165,
+        "context_precision": 0.5833333333041666,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "provider=ollama 时可由 LLMFactory 创建。",
+      "retrieved": 5,
+      "trace_id": "1ecff4d6-eed9-4268-baa5-e55b63c57488",
+      "scores_written": 4
+    },
+    {
+      "query": "Dashboard 页面 4/5 通过哪个服务读取哪个文件，并按什么字段分类展示？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8085963997937502,
+        "context_precision": 0.6999999999766667,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Dashboard 页面 4/5 通过 TraceService 读取 logs/traces.jsonl，按 trace_type 字段分类展示。",
+      "retrieved": 5,
+      "trace_id": "db6f044c-1657-4ec0-a212-133950c51cd0",
+      "scores_written": 4
+    },
+    {
+      "query": "G6 的验收标准是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5628280257305356,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "执行 query 后，Dashboard 显示查询追踪详情与各阶段对比。",
+      "retrieved": 5,
+      "trace_id": "158f667c-863b-4076-9d91-05381c9b2b60",
+      "scores_written": 4
+    },
+    {
+      "query": "Response Builder 负责哪些功能？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9816793647284401,
+        "context_precision": 0.6388888888675925,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "Response Builder 负责引用生成、图片 Base64 编码和 MCP 格式化，最终构建 MCP 响应（TextContent + ImageContent）。",
+      "retrieved": 5,
+      "trace_id": "6d56261a-a0eb-4532-935e-13c87727b301",
+      "scores_written": 4
+    },
+    {
+      "query": "混合检索引擎由哪些检索方式组成，使用了什么融合算法？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8901411389684523,
+        "context_precision": 0.8041666666465626,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "混合检索引擎由稠密检索（Dense Retrieval/Embedding）和稀疏检索（Sparse Retrieval/BM25）两路组成，使用 RRF（Reciprocal Rank Fusion）算法进行结果融合。",
+      "retrieved": 5,
+      "trace_id": "a448da15-db72-4318-98d8-914c3ba2108b",
+      "scores_written": 4
+    },
+    {
+      "query": "阶段 J 的目的是什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999999999999996,
+        "context_precision": 0.4166666666458333,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "阶段 J 的目的是：在既有 rerank 插槽接入 TypeSafe Jev（typed judgment，不产文本只输出结构化评分），并建立 BEIR 公开数据集上 4 重排器 × 3 检索器的对比基准（质量 / 速度 / 成本 / 可靠性四维度）。",
+      "retrieved": 5,
+      "trace_id": "d2a23621-bd5a-4114-b40c-809f6e3ade32",
+      "scores_written": 4
+    },
+    {
+      "query": "`finish()` 后 `to_dict()` 输出需要包含哪些字段？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8349071952764454,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "`finish()` 后 `to_dict()` 输出需要包含：`trace_id`、`trace_type`、`started_at`、`finished_at`、`total_elapsed_ms`、`stages`。",
+      "retrieved": 5,
+      "trace_id": "fe48411d-5b11-4f6f-81df-f794d4837bf0",
+      "scores_written": 4
+    },
+    {
+      "query": "RagasEvaluator 支持哪些指标？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999999999999996,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "RagasEvaluator 支持 Faithfulness、Answer Relevancy、Context Precision 三个指标。",
+      "retrieved": 5,
+      "trace_id": "f26b806c-d91a-4079-9d03-e34b6f11537b",
+      "scores_written": 4
+    },
+    {
+      "query": "本项目当前采用什么向量编码策略？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9531724079498912,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "本项目当前采用双路编码（Dense + Sparse）策略：Dense Embeddings 调用 Embedding 模型生成高维浮点向量以捕捉深层语义关联，Sparse Embeddings 利用 BM25 编码器生成稀疏向量以捕捉精确的关键词匹配信息。",
+      "retrieved": 5,
+      "trace_id": "52e72324-acd0-4810-896d-88e53d2acf2f",
+      "scores_written": 4
+    },
+    {
+      "query": "validate_settings 的错误信息需要包含什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7462561649356024,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "错误信息需要包含字段路径，例如 `embedding.provider`。",
+      "retrieved": 5,
+      "trace_id": "08522aee-ed57-4e73-ac66-feab3de4b7e9",
+      "scores_written": 3
+    },
+    {
+      "query": "ImageCaptioner 在降级模式下，chunk 会保留什么，并且会标记什么？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7795781818960835,
+        "context_precision": 0.9999999999,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "降级模式下，chunk 会保留 image_refs，但不生成 caption，并标记 has_unprocessed_images。",
+      "retrieved": 5,
+      "trace_id": "14114175-9460-4141-87b4-1e58931ed605",
+      "scores_written": 4
+    },
+    {
+      "query": "F4 任务中，一次摄取生成的 trace 需要包含哪些阶段？",
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8710706188223757,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      },
+      "error": null,
+      "answer": "一次摄取生成的 trace 需要包含 load、split、transform、embed、upsert 阶段。",
+      "retrieved": 5,
+      "trace_id": "5b7a74df-0c9b-448f-9290-c93dcecc7c6e",
+      "scores_written": 4
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+# Deterministic, hermetic settings for the CI quality gate / offline evaluation.
+# No API keys, no network LLM calls; embeddings use local Ollama.
+
+# Deterministic settings for evaluation / CI.
+# Derivation of the verified config used to build the project_docs_ci corpus:
+# LLM-based transform and vision captioning are OFF, so ingestion needs no API
+# key, makes no network LLM calls, and produces bit-identical chunk text every run.
+# Embeddings still use local Ollama (see embedding section).
+
+# Modular RAG MCP Server - Configuration
+# This is the main configuration file for the MCP Server.
+# Edit this file to configure LLM, Embedding, VectorStore, and other services.
+
+# =============================================================================
+# LLM Configuration
+# =============================================================================
+llm:
+  # Hermetic CI config: the eval pipeline runs with LLM transforms off, so no
+  # chat model is ever called — provider/model exist only to satisfy validation
+  # without requiring any API key or network.
+  provider: "ollama"
+  model: "unused-transforms-off"
+  api_key: ""
+  temperature: 0.0
+  max_tokens: 4096
+
+# =============================================================================
+# Embedding Configuration
+# =============================================================================
+embedding:
+  provider: "ollama" # Options: openai, azure, ollama, glm
+  model: "nomic-embed-text" # Local Ollama embedding model (free)
+  dimensions: 768 # nomic-embed-text native dimension
+  # base_url defaults to http://localhost:11434 (or env OLLAMA_BASE_URL)
+  # GLM embedding-3 is a paid model and this key has no balance (error 1113),
+  # so embeddings are served locally via Ollama.
+
+# =============================================================================
+# Vision LLM Configuration (for Image Captioning)
+# =============================================================================
+vision_llm:
+  enabled: false # corpus is plain text; no vision model, no API key
+  provider: "ollama" # unused while enabled=false, required by validation
+  model: "unused"
+  api_key: ""
+  max_image_size: 2048 # Max dimension (width/height) for image compression
+
+# =============================================================================
+# Vector Store Configuration
+# =============================================================================
+vector_store:
+  provider: "chroma" # Options: chroma, qdrant, pinecone
+  persist_directory: "./data/db/chroma"
+  collection_name: "knowledge_hub"
+
+# =============================================================================
+# Retrieval Configuration
+# =============================================================================
+retrieval:
+  dense_top_k: 20
+  sparse_top_k: 20
+  fusion_top_k: 10
+  rrf_k: 60 # RRF constant
+
+# =============================================================================
+# Rerank Configuration
+# =============================================================================
+rerank:
+  enabled: true
+  provider: "cross_encoder" # Options: none, cross_encoder, llm
+  model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  top_k: 5
+
+# =============================================================================
+# Evaluation Configuration
+# =============================================================================
+evaluation:
+  enabled: true # enables hit_rate/mrr/ndcg evaluation (custom provider)
+  provider: "custom" # Options: ragas, deepeval, custom
+  metrics:
+    - "hit_rate"
+    - "mrr"
+    - "ndcg"
+
+# =============================================================================
+# Observability Configuration
+# =============================================================================
+observability:
+  log_level: "INFO" # Options: DEBUG, INFO, WARNING, ERROR
+  trace_enabled: true
+  trace_file: "./logs/traces.jsonl"
+  structured_logging: true
+
+# =============================================================================
+# Ingestion Configuration
+# =============================================================================
+ingestion:
+  chunk_size: 1000
+  chunk_overlap: 200
+  splitter: "recursive" # Options: recursive, semantic, fixed_length
+  batch_size: 100
+
+  # Chunk Refiner Configuration (C5)
+  chunk_refiner:
+    use_llm: false # Set to true to enable LLM-based refinement (requires LLM config)
+    # When use_llm is false or LLM call fails, falls back to rule-based refinement
+
+  # Metadata Enricher Configuration (C6)
+  metadata_enricher:
+    use_llm: false # Set to true to enable LLM-based enrichment (requires LLM config)
+    # When use_llm is false or LLM call fails, falls back to rule-based enrichment

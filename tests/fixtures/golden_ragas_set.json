@@ -1,0 +1,789 @@
+{
+  "description": "Ragas golden set drafted by an LLM from corpus chunks, one QA pair per chunk. provenance.chunk_id points at the chunk the pair was drafted from — verify each pair against that text before trusting the metrics.",
+  "version": "1.0-draft",
+  "generated_at": "2026-09-22T09:24:20+00:00",
+  "collection": "project_docs_ci",
+  "seed": 42,
+  "test_cases": [
+    {
+      "query": "子功能 Spec 的阶段总览中，当前从哪个字母编号起？",
+      "reference_answer": "接续 DEV_SPEC 已用字母编号（A–I、J 已用，当前从 K 起）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "AGENTS.md"
+      ],
+      "provenance": {
+        "chunk_id": "cd8da5d5_0000_bb70a820",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/AGENTS.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "B2 中 EmbeddingFactory.create 的签名是什么？",
+      "reference_answer": "EmbeddingFactory.create(settings) -> BaseEmbedding。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0131_8ffa2a25",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 131
+      }
+    },
+    {
+      "query": "在 config/settings.yaml 中，把重排换成 Jev 时，rerank 的 provider 可以取哪些值？",
+      "reference_answer": "provider 可以取 none | cross_encoder | llm | jev。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0008_9193935d",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 8
+      }
+    },
+    {
+      "query": "在 ingestion 配置中，chunk_overlap 的作用是什么？",
+      "reference_answer": "相邻块重叠，防语义截断。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "CONFIG_GUIDE.md"
+      ],
+      "provenance": {
+        "chunk_id": "e75a4d2a_0003_90bf0a62",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/CONFIG_GUIDE.md",
+        "chunk_index": 3
+      }
+    },
+    {
+      "query": "基准运行器对每个 reranker 的重排深度是多少，为什么？",
+      "reference_answer": "depth=10，公平对比且符合 Jev 单次 ≤10 约束；none 即原序。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0005_67145714",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 5
+      }
+    },
+    {
+      "query": "K3 任务的完成日期和备注分别是什么？",
+      "reference_answer": "K3 的完成日期是 2026-09-22，备注为：OTLP 传输层 + 映射单测；实时 --langfuse/Playground 开关已接。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-langfuse-mvp-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "f170cd65_0002_a225124d",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-langfuse-mvp-design.md",
+        "chunk_index": 2
+      }
+    },
+    {
+      "query": "在 UI 上，chunk_refiner#2 里的 #2 表示什么？",
+      "reference_answer": "#N 表示该阶段的第几个，按完成顺序，并行跑，不一定是第几块。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-22-observability-eval-stage-L.md"
+      ],
+      "provenance": {
+        "chunk_id": "c2b012c1_0001_d40ca5ee",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-22-observability-eval-stage-L.md",
+        "chunk_index": 1
+      }
+    },
+    {
+      "query": "这份设计文档的日期和状态分别是什么？",
+      "reference_answer": "日期：YYYY-MM-DD，状态：待评审。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "TEMPLATE.md"
+      ],
+      "provenance": {
+        "chunk_id": "3cf189b8_0000_8ea0d87b",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/TEMPLATE.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "若 PDF 包含图片，图片应保存到什么目录，Document.text 中图片位置插入什么占位符？",
+      "reference_answer": "应提取图片并保存到 `data/images/{doc_hash}/` 目录；在 `Document.text` 中，图片位置插入占位符：`[IMAGE: {image_id}]`。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0145_64fefb90",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 145
+      }
+    },
+    {
+      "query": "在 scifact 数据集上，hybrid 方法的 nDCG 是多少？",
+      "reference_answer": "scifact/hybrid 的 nDCG 为 67.40。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0001_2a4f6f24",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 1
+      }
+    },
+    {
+      "query": "换 embedding 模型后为什么必须重新灌库？",
+      "reference_answer": "因为新旧向量维度/空间不同，不能混存。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "CONFIG_GUIDE.md"
+      ],
+      "provenance": {
+        "chunk_id": "e75a4d2a_0001_82fdac27",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/CONFIG_GUIDE.md",
+        "chunk_index": 1
+      }
+    },
+    {
+      "query": "JevReranker 调用 REST 接口时，state 和 questions 分别对应什么？",
+      "reference_answer": "state = query 文本；questions = 每个候选一条 Score 问题（有序档位 1-10 相关性）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0003_133cd38c",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 3
+      }
+    },
+    {
+      "query": "`LANGFUSE_HOST` 配置在哪个位置，值是什么？",
+      "reference_answer": "`LANGFUSE_HOST` 配置在 `.env`，值为 `http://localhost:3000`。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-langfuse-mvp-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "f170cd65_0001_94f7fd54",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-langfuse-mvp-design.md",
+        "chunk_index": 1
+      }
+    },
+    {
+      "query": "验收标准中，`pytest tests/unit` 的基线通过数和当前通过数分别是多少？",
+      "reference_answer": "基线为 29 failed / 1222 passed，当前为 29 failed / 1263 passed。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-22-observability-eval-stage-L.md"
+      ],
+      "provenance": {
+        "chunk_id": "c2b012c1_0003_a6d97c0e",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-22-observability-eval-stage-L.md",
+        "chunk_index": 3
+      }
+    },
+    {
+      "query": "Embedding 模型与 Rerank 模型支持哪些云端服务和本地模型？",
+      "reference_answer": "支持云端服务（OpenAI Embedding, Cohere Rerank）与本地模型（Sentence-Transformers, BGE）自由切换。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0002_766ec962",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 2
+      }
+    },
+    {
+      "query": "Libs 可插拔层中 Reranker 支持哪些选项？",
+      "reference_answer": "none/cross_encoder/llm/jev",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0007_32d3a7d1",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 7
+      }
+    },
+    {
+      "query": "在 rerank 配置中，provider 为 jev 时，min_score 的作用是什么？基准中做纯排序对比建议用多少？",
+      "reference_answer": "min_score 是\"质量门\"：低于阈值的候选被过滤。基准中 4.0 过于激进（10 候选只剩 0-2 条），做纯排序对比用 1.0，做证据充分性过滤再调高。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "CONFIG_GUIDE.md"
+      ],
+      "provenance": {
+        "chunk_id": "e75a4d2a_0002_0c16b5ba",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/CONFIG_GUIDE.md",
+        "chunk_index": 2
+      }
+    },
+    {
+      "query": "指标模块 `src/observability/evaluation/metrics.py` 中，`ndcg_at_k` 在 qrels 为空时返回什么？",
+      "reference_answer": "qrels 为空时返回 0.0。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0002_99988570",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 2
+      }
+    },
+    {
+      "query": "Langfuse 可观测 MVP 的导出器新建在哪个文件，它读取什么并映射为什么？",
+      "reference_answer": "导出器新建在 scripts/export_langfuse.py，读 logs/traces.jsonl，把每条 trace 映射为 Langfuse trace + 每阶段一个 span（输入/输出/耗时/元数据），经 langfuse Python SDK 上报。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-langfuse-mvp-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "f170cd65_0000_0d37c278",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-langfuse-mvp-design.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "Langfuse 云端按类型显示时，UI 上确认的模型名称、prompt 到 completion 的 token 数、耗时和成本分别是什么？",
+      "reference_answer": "UI 已确认：`glm-4-flash`、`242 prompt → 70 completion`、`4.62s`、`$0.00`（GLM 免费额度，符合预期）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-22-observability-eval-stage-L.md"
+      ],
+      "provenance": {
+        "chunk_id": "c2b012c1_0000_8b1363b3",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-22-observability-eval-stage-L.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "在 `Document.text` 中，图片位置使用什么格式标记？",
+      "reference_answer": "图片位置使用 `[IMAGE: {image_id}]` 格式标记。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0143_70d1c08e",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 143
+      }
+    },
+    {
+      "query": "如何把本地 trace 导入 Langfuse？",
+      "reference_answer": "运行 python scripts/export_langfuse.py --last 10 可把本地 trace 导入 Langfuse。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0006_bb7a0578",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 6
+      }
+    },
+    {
+      "query": "在“全本地零成本”配方中，llm、embedding 和 rerank 分别配置为什么？",
+      "reference_answer": "llm: ollama(qwen2.5) + embedding: ollama + rerank: cross_encoder(bge)。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "CONFIG_GUIDE.md"
+      ],
+      "provenance": {
+        "chunk_id": "e75a4d2a_0004_694545f1",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/CONFIG_GUIDE.md",
+        "chunk_index": 4
+      }
+    },
+    {
+      "query": "J1、J2、J3 之间是什么关系？",
+      "reference_answer": "J1/J2/J3 可并行。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0008_016e3a81",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 8
+      }
+    },
+    {
+      "query": "新建的 Langfuse 组织（2026-09-16 之后创建）调用 legacy API 会返回什么错误？",
+      "reference_answer": "会返回 410 LEGACY_API_UNAVAILABLE_FOR_NEW_ORGANIZATION，提示 GET /api/public/traces 是 legacy API，替代接口为 GET /api/public/v2/observations。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-langfuse-mvp-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "f170cd65_0003_9c6adbf1",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-langfuse-mvp-design.md",
+        "chunk_index": 3
+      }
+    },
+    {
+      "query": "为什么本项目要手写 OTLP，而不照官方博客那样写？",
+      "reference_answer": "因为官方博客依赖 LangChain 自动抓取和上下文管理器实时测量，而本项目是自研可插拔架构、阶段是事后记账，官方 SDK 的 start_observation 没有 start_time 参数，回放历史记录会把 span 盖成“现在”。OTLP 支持显式时间戳，能忠实还原已经跑完的调用。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-22-observability-eval-stage-L.md"
+      ],
+      "provenance": {
+        "chunk_id": "c2b012c1_0002_67ad2ff4",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-22-observability-eval-stage-L.md",
+        "chunk_index": 2
+      }
+    },
+    {
+      "query": "Splitter 阶段如何保持图文关联？",
+      "reference_answer": "切分时保留图片引用标记在对应 Chunk 中，确保图片与其上下文段落保持关联，输出 Chunks（各自携带关联的 image_refs）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0045_9a7fff13",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 45
+      }
+    },
+    {
+      "query": "Embedding 默认走什么？",
+      "reference_answer": "Embedding 默认走本地 Ollama（`nomic-embed-text`），离线可用；也可在 `config/settings.yaml` 切换为云端。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0004_50d571eb",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 4
+      }
+    },
+    {
+      "query": "llm 配置块中，temperature 字段在重排/打分类任务中建议设置为什么值？",
+      "reference_answer": "重排/打分类任务建议 0.0 保证稳定。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "CONFIG_GUIDE.md"
+      ],
+      "provenance": {
+        "chunk_id": "e75a4d2a_0000_caaca2fe",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/CONFIG_GUIDE.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "CrossEncoderReranker 验证中，模型配置为什么？",
+      "reference_answer": "模型配置为 `BAAI/bge-reranker-base`（本地推理，免费）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0004_44d5c4e4",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 4
+      }
+    },
+    {
+      "query": "新建的 Langfuse 组织（2026-09-16 之后创建）调用 legacy API 会返回什么？",
+      "reference_answer": "会返回 410 LEGACY_API_UNAVAILABLE_FOR_NEW_ORGANIZATION，例如 GET /api/public/traces 是 legacy API，替代方案为 GET /api/public/v2/observations。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-langfuse-mvp-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "f170cd65_0004_46ef7089",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-langfuse-mvp-design.md",
+        "chunk_index": 4
+      }
+    },
+    {
+      "query": "本项目当前采用的召回策略是什么？",
+      "reference_answer": "本项目当前采用混合召回 + 精排（Hybrid + Rerank）策略。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0030_d3017fbe",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 30
+      }
+    },
+    {
+      "query": "在 BEIR 的 scifact/bm25 上，哪种重排方案的 nDCG@10 ×100 最高，数值是多少？",
+      "reference_answer": "jev 最高，数值是 73.29。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0000_b9112cce",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "rerank.min_score 在 settings.yaml 中的默认值是多少？",
+      "reference_answer": "rerank.min_score 是 settings.yaml 中的新增字段，默认 4。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0006_8a149510",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 6
+      }
+    },
+    {
+      "query": "首次生成 `infra/langfuse/.env` 密钥时，需要为哪些变量用 `openssl rand -hex 16` 生成值？",
+      "reference_answer": "SALT、CLICKHOUSE_PASSWORD、MINIO_ROOT_PASSWORD。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-langfuse-mvp-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "f170cd65_0005_f500aecb",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-langfuse-mvp-design.md",
+        "chunk_index": 5
+      }
+    },
+    {
+      "query": "在 Splitter 阶段，每个 Chunk 的 Metadata 中增加了哪个字段来记录该 Chunk 关联的图片列表？",
+      "reference_answer": "每个 Chunk 的 Metadata 中增加 `image_refs: List[image_id]` 字段，记录该 Chunk 关联的图片列表。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0047_5ae2f2c6",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 47
+      }
+    },
+    {
+      "query": "临时公网演示时，用什么命令一行获得公网 URL？",
+      "reference_answer": "cloudflared tunnel --url http://localhost:8000",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0005_7d77455e",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 5
+      }
+    },
+    {
+      "query": "Jev 单次超过 10 个候选会触发什么风险，如何缓解？",
+      "reference_answer": "会触发 context rot；缓解方式是 depth 固定 10，代码硬限制。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0007_1658f19b",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 7
+      }
+    },
+    {
+      "query": "I5 全链路 E2E 验收的验收标准包括哪些命令或展示要求？",
+      "reference_answer": "包括 `python scripts/ingest.py --path tests/fixtures/sample_documents/ --collection test` 成功、`python scripts/query.py --query \"测试查询\" --verbose` 返回结果、Dashboard 可展示摄取与查询追踪，以及 `python scripts/evaluate.py` 输出评估指标。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0186_d43005e6",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 186
+      }
+    },
+    {
+      "query": "在同批查询的速度与成本实测中，jev（API）的延迟 p50 和每千次查询费用分别是多少？",
+      "reference_answer": "jev（API）的延迟 p50 为 ~1.5s，费用为 ~$0.17 / 千次查询。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0002_703fa77e",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 2
+      }
+    },
+    {
+      "query": "benchmark_rerank.py 对每个 dataset × retriever × reranker 组合执行什么流程，并记录哪些内容？",
+      "reference_answer": "召回 top-10 → 重排 → nDCG@10 / MRR@10 / Hit@10，并记录延迟、token 用量、失败回退。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0001_001959c4",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 1
+      }
+    },
+    {
+      "query": "Server 可以提供一个什么接口，让 Agent 在生成答案后自主调用以检测是否存在幻觉？",
+      "reference_answer": "Server 可以提供一个 `self_check` 接口。Agent 在生成答案后，可以自主调用该接口检测是否存在幻觉，或者检索结果是否真正支撑了论点。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0193_7ea4a932",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 193
+      }
+    },
+    {
+      "query": "Roadmap 中哪一项已经完成？",
+      "reference_answer": "Langfuse 实时上报（`query.py --langfuse` / Query Playground 开关；导出器走 Ingestion API）已完成。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0009_330c5985",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 9
+      }
+    },
+    {
+      "query": "验收标准中，哪一项标记为部分完成（[~]）？",
+      "reference_answer": "JevReranker 走 MCP 链路时（factory 契约与既有渲染通道推断，未单独演示） Dashboard Query Traces 正常显示（现有页面零改动或仅加渲染字段）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0009_f9e375bb",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 9
+      }
+    },
+    {
+      "query": "系统通过哪个文件统一配置各组件实现，支持零代码切换？",
+      "reference_answer": "系统通过 `config/settings.yaml` 统一配置各组件实现，支持零代码切换。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0106_59b497f7",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 106
+      }
+    },
+    {
+      "query": "安装步骤中，创建虚拟环境并激活的命令是什么？",
+      "reference_answer": "python -m venv .venv && source .venv/bin/activate",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "README.md"
+      ],
+      "provenance": {
+        "chunk_id": "7be1a66e_0003_d4b18a02",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/README.md",
+        "chunk_index": 3
+      }
+    },
+    {
+      "query": "本期基准测试的主指标是什么，辅指标有哪些？",
+      "reference_answer": "主指标是 nDCG@10×100，辅指标包括 MRR@10、Hit Rate@10、rerank 延迟（p50/p95）、估算成本（$/千查询）、失败回退率。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "2026-09-21-jev-rerank-benchmark-design.md"
+      ],
+      "provenance": {
+        "chunk_id": "5613ab91_0000_4f8531da",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/docs/specs/2026-09-21-jev-rerank-benchmark-design.md",
+        "chunk_index": 0
+      }
+    },
+    {
+      "query": "触发摄取时调用什么方法，其参数是什么？",
+      "reference_answer": "调用 IngestionPipeline.run(path, collection, on_progress=callback)，并通过 st.progress() 实时更新进度。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0105_9069dc60",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 105
+      }
+    },
+    {
+      "query": "在 B7.2 中，provider=ollama 时可由什么创建？",
+      "reference_answer": "provider=ollama 时可由 `LLMFactory` 创建。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0135_34357fed",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 135
+      }
+    },
+    {
+      "query": "Dashboard 页面 4/5 通过哪个服务读取哪个文件，并按什么字段分类展示？",
+      "reference_answer": "Dashboard 页面 4/5 读取 `logs/traces.jsonl`（通过 `TraceService`），按 `trace_type` 分类展示。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0042_d3e0ea2f",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 42
+      }
+    },
+    {
+      "query": "G6 的验收标准是什么？",
+      "reference_answer": "执行 query 后，Dashboard 显示查询追踪详情与各阶段对比。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0180_b0351820",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 180
+      }
+    },
+    {
+      "query": "Response Builder 负责哪些功能？",
+      "reference_answer": "引用生成 + 图片 Base64 编码 + MCP 格式化。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0104_f6526645",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 104
+      }
+    },
+    {
+      "query": "混合检索引擎由哪些检索方式组成，使用了什么融合算法？",
+      "reference_answer": "混合检索引擎由 Dense + Sparse + RRF 组成，结果融合使用 RRF 算法。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0078_7f4e3afe",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 78
+      }
+    },
+    {
+      "query": "阶段 J 的目的是什么？",
+      "reference_answer": "在既有 rerank 插槽接入 TypeSafe Jev（typed judgment，不产文本只输出结构化评分），并建立 BEIR 公开数据集上 4 重排器 × 3 检索器的对比基准（质量 / 速度 / 成本 / 可靠性四维度）。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0110_17943934",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 110
+      }
+    },
+    {
+      "query": "`finish()` 后 `to_dict()` 输出需要包含哪些字段？",
+      "reference_answer": "需要包含 `trace_id`、`trace_type`、`started_at`、`finished_at`、`total_elapsed_ms`、`stages`。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0172_f055c7b8",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 172
+      }
+    },
+    {
+      "query": "RagasEvaluator 支持哪些指标？",
+      "reference_answer": "支持指标：Faithfulness, Answer Relevancy, Context Precision。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0181_ce6f186d",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 181
+      }
+    },
+    {
+      "query": "本项目当前采用什么向量编码策略？",
+      "reference_answer": "本项目当前采用双路编码（Dense + Sparse）策略，同时生成稠密向量和稀疏向量。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0029_f3e33b92",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 29
+      }
+    },
+    {
+      "query": "validate_settings 的错误信息需要包含什么？",
+      "reference_answer": "错误信息包含字段路径，例如 `embedding.provider`。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0130_5823e77a",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 130
+      }
+    },
+    {
+      "query": "ImageCaptioner 在降级模式下，chunk 会保留什么，并且会标记什么？",
+      "reference_answer": "chunk 保留 image_refs，但不生成 caption 且标记 `has_unprocessed_images`。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0153_f9cbf382",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 153
+      }
+    },
+    {
+      "query": "F4 任务中，一次摄取生成的 trace 需要包含哪些阶段？",
+      "reference_answer": "一次摄取生成 trace，包含 `load`/`split`/`transform`/`embed`/`upsert` 阶段。",
+      "expected_chunk_ids": [],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "provenance": {
+        "chunk_id": "52330cc8_0174_17beb833",
+        "source_path": "/Users/hong/projects/active/MODULAR-RAG-PLAYGROUND/DEV_SPEC.md",
+        "chunk_index": 174
+      }
+    }
+  ]
+}

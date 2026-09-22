@@ -1,0 +1,49 @@
+name: quality-gate
+
+# Regression lock for retrieval quality: rebuild the deterministic corpus,
+# run the offline golden-set evaluation, and block the merge when any metric
+# falls below threshold. No LLM API keys are needed — the corpus is ingested
+# with config/settings.eval.yaml (LLM transforms off) and embeddings run on
+# a local Ollama instance.
+
+on:
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  golden-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Ollama and pull the embedding model
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -s http://localhost:11434/api/version >/dev/null && break
+            sleep 1
+          done
+          ollama pull nomic-embed-text
+
+      - name: Install project
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Ingest golden corpus (deterministic, no LLM calls)
+        run: |
+          for f in docs/CONFIG_GUIDE.md README.md AGENTS.md docs/specs DEV_SPEC.md; do
+            python scripts/ingest.py --config config/settings.eval.yaml \
+              --path "$f" --collection project_docs_ci --extensions .md --force
+          done
+
+      - name: Quality gate (hit_rate / MRR / nDCG thresholds)
+        run: |
+          python scripts/quality_gate.py --collection project_docs_ci

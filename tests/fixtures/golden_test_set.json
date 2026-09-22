@@ -1,0 +1,225 @@
+{
+  "description": "Golden test set for the project_docs corpus (this repo's own Markdown documentation, ingested via scripts/ingest.py --extensions .md). expected_chunk_ids are labelled by reading each candidate chunk, not by copying retrieval rankings. CAVEAT: stored chunk ids hash both the post-transform chunk text and the absolute source path, so they are tied to the ingestion configuration and the machine — see reports/golden_baseline_2026-09-22.md before using them in CI. expected_locations (repo-relative source + chunk_index) is the portable addressing scheme: chunk ids embed the absolute source path and post-transform text hash, so only locations survive across machines and ingestion configs.",
+  "version": "2.1",
+  "test_cases": [
+    {
+      "query": "What is Modular RAG?",
+      "expected_chunk_ids": [
+        "7be1a66e_0000_2dbb7ebd",
+        "52330cc8_0000_3a4c4eb3"
+      ],
+      "expected_sources": [
+        "README.md",
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "Modular RAG is a Retrieval-Augmented Generation system built with modular, pluggable components that can be configured and swapped independently.",
+      "expected_locations": [
+        {
+          "source": "README.md",
+          "chunk_index": 0
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 0
+        }
+      ]
+    },
+    {
+      "query": "How to configure Azure OpenAI?",
+      "expected_chunk_ids": [
+        "e75a4d2a_0000_b5dc9e8b",
+        "52330cc8_0106_76fe7c05",
+        "52330cc8_0026_ee772eaa"
+      ],
+      "expected_sources": [
+        "docs/CONFIG_GUIDE.md",
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "Configure Azure OpenAI by setting the provider to 'azure' in settings.yaml, along with the deployment_name, azure_endpoint, api_version, and api_key fields.",
+      "expected_locations": [
+        {
+          "source": "docs/CONFIG_GUIDE.md",
+          "chunk_index": 0
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 106
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 26
+        }
+      ]
+    },
+    {
+      "query": "What is hybrid search and how does it work?",
+      "expected_chunk_ids": [
+        "7be1a66e_0001_05d31197",
+        "52330cc8_0091_f6166bfb"
+      ],
+      "expected_sources": [
+        "README.md",
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "Hybrid search combines dense retrieval (semantic embeddings) and sparse retrieval (BM25 keyword matching), then fuses results using Reciprocal Rank Fusion (RRF) for better recall.",
+      "expected_locations": [
+        {
+          "source": "README.md",
+          "chunk_index": 1
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 91
+        }
+      ]
+    },
+    {
+      "query": "Explain the chunking strategy",
+      "expected_chunk_ids": [
+        "52330cc8_0002_63be89d6",
+        "52330cc8_0000_3a4c4eb3"
+      ],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "Documents are split into chunks using configurable strategies (recursive, semantic, or fixed-length). Chunks are then refined and enriched with metadata before storage.",
+      "expected_locations": [
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 2
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 0
+        }
+      ]
+    },
+    {
+      "query": "What evaluation metrics are supported?",
+      "expected_chunk_ids": [
+        "52330cc8_0031_3c65ca8a",
+        "52330cc8_0187_00f74c3a"
+      ],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "The system supports hit_rate, MRR (custom metrics), and Ragas LLM-as-Judge metrics including faithfulness, answer_relevancy, and context_precision.",
+      "expected_locations": [
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 31
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 187
+        }
+      ]
+    },
+    {
+      "query": "切块（chunk）的 id 是怎么生成的？",
+      "expected_chunk_ids": [
+        "52330cc8_0146_055a806f",
+        "52330cc8_0147_22b50fbb"
+      ],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "Chunk id 由文档 id、序号和内容哈希拼成，格式为 {doc_id}_{index:04d}_{text_sha256前8位}，同一输入永远生成同一 id。",
+      "expected_locations": [
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 146
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 147
+        }
+      ]
+    },
+    {
+      "query": "MCP Server 支持哪两种传输模式？",
+      "expected_chunk_ids": [
+        "52330cc8_0020_83282704",
+        "52330cc8_0019_4d72ba47",
+        "7be1a66e_0002_f6cf39de"
+      ],
+      "expected_sources": [
+        "DEV_SPEC.md",
+        "README.md"
+      ],
+      "reference_answer": "支持 Stdio 与 Streamable HTTP 两种传输：stdio 由客户端以子进程方式启动、消息走标准输入输出；HTTP 模式用 --http 暴露 /mcp 端点，底层为无状态会话管理。",
+      "expected_locations": [
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 20
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 19
+        },
+        {
+          "source": "README.md",
+          "chunk_index": 2
+        }
+      ]
+    },
+    {
+      "query": "入库时如何避免重复处理同一个文件？",
+      "expected_chunk_ids": [
+        "52330cc8_0008_7d5d14e5",
+        "52330cc8_0009_db0afbcf"
+      ],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "摄取前对文件计算 SHA256 并与摄取历史比对，已处理过且内容未变的文件直接跳过，需要强制重跑时显式使用 --force。",
+      "expected_locations": [
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 8
+        },
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 9
+        }
+      ]
+    },
+    {
+      "query": "检索结果里的图片是怎么返回给调用方的？",
+      "expected_chunk_ids": [
+        "52330cc8_0051_26036874"
+      ],
+      "expected_sources": [
+        "DEV_SPEC.md"
+      ],
+      "reference_answer": "命中的 chunk 携带 image_refs，服务端据此查图片索引拿到文件路径，读图后以 Base64 编码，和文本内容一起放进 MCP 响应的 content 数组。",
+      "expected_locations": [
+        {
+          "source": "DEV_SPEC.md",
+          "chunk_index": 51
+        }
+      ]
+    },
+    {
+      "query": "Langfuse 的 trace 数据是怎么上报的？",
+      "expected_chunk_ids": [
+        "f170cd65_0004_0df81559",
+        "f170cd65_0000_d90821d6"
+      ],
+      "expected_sources": [
+        "docs/specs/2026-09-21-langfuse-mvp-design.md"
+      ],
+      "reference_answer": "trace 先落盘本地 traces.jsonl，再通过 OTLP HTTP 接口把各 stage 转成观测发到 Langfuse，LLM 调用作为 generation 观测并携带 token 与成本信息。",
+      "expected_locations": [
+        {
+          "source": "docs/specs/2026-09-21-langfuse-mvp-design.md",
+          "chunk_index": 4
+        },
+        {
+          "source": "docs/specs/2026-09-21-langfuse-mvp-design.md",
+          "chunk_index": 0
+        }
+      ]
+    }
+  ]
+}
