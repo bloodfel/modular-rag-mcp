@@ -1,10 +1,13 @@
 # Modular RAG MCP Server
 
+![quality-gate](https://github.com/bloodfel/modular-rag-mcp/actions/workflows/quality-gate.yml/badge.svg)
+
 **把你的私有文档变成 AI 助手随时可查的知识库**——在 Claude Desktop / Cursor / ZCode 里装上它，助手就能检索你的文档并给出带引用的回答。本地运行，数据不出你的电脑。
 
 - 🙋 **适合谁**：想让 AI 助手查自己文档的人；想给团队搭一个共享知识库检索服务的人
 - ⚡ **多快能用**：克隆 → 填 2 个免费 key → IDE 里贴一段配置，然后直接用对话传文档、问问题
 - 🏆 **效果如何**：不是"能跑就行"——4 种重排方案在 BEIR 公开数据集上实测对比（见下表），质量 / 速度 / 成本 / 可靠性四维度全量化
+- 🧪 **质量可证**：离线金标（hit@10 / MRR / nDCG@10）+ Ragas LLM-as-Judge 四指标，评测分数回写 Langfuse trace；CI 门禁低于阈值自动阻断合并
 
 > 可插拔、可观测的模块化 RAG 检索服务，通过 **MCP（Model Context Protocol）** 把私有知识库暴露给任意 AI 助手——Copilot、Claude Desktop、ZCode 等开箱即用。
 > 不止能跑：四种重排路线（none / BGE / **Jev** / LLM）在 BEIR 公开数据集上有完整的**质量 / 速度 / 成本 / 可靠性**四维实测。
@@ -33,7 +36,8 @@
 - **全链路可插拔**：LLM / Embedding / Reranker / VectorStore / Splitter / Evaluator 全部抽象接口 + 工厂 + `settings.yaml` 配置驱动，**改一行配置即换后端，零代码修改**；
 - **重排可量化**：内置 BEIR 基准脚本，谁好谁坏跑一遍就知道（见下文实测）；
 - **Typed-Judgment 重排（Jev）**：接入 TypeSafe System One 模型——不生成任何文字，直接输出类型化相关性评分 + 校准概率，**没有"JSON 解析失败"这条失败路径**；
-- **双层可观测**：内置 JSONL trace + Streamlit 七页面 Dashboard（含 Query Playground 调试查询）；一键导出到自托管 Langfuse；
+- **双层可观测**：内置 JSONL trace + Streamlit 七页面 Dashboard（含 Query Playground 调试查询）；每次运行自动上报 Langfuse（OTLP），延迟 / token / 成本 / 每阶段瀑布开箱即见；
+- **评测闭环 + CI 质量门禁**：离线金标（hit@10 / MRR / nDCG@10）+ 在线 Ragas LLM-as-Judge 四指标（faithfulness / relevancy / precision / recall），评测分数自动回写每条 trace；CI 中指标低于阈值自动阻断合并（本仓库即用此门禁）；
 - **多模态检索**：文档图片经 Vision LLM 生成描述后入索引，"搜文字、出图片"；
 - **MCP 双传输**：stdio（个人本地，IDE 一段配置即用）+ Streamable HTTP（团队/远程共享，连 URL 即用）。
 
@@ -207,19 +211,22 @@ python scripts/make_charts.py reports/rerank_benchmark_<date>.json   # 重画图
 ## 📚 文档
 
 - [`DEV_SPEC.md`](DEV_SPEC.md) — 架构宪法与阶段排期（A–K 共 76 个任务，全部完成）
+- [`docs/RESULTS.md`](docs/RESULTS.md) — 产出数据总账：可观测 / 检索基线 / Ragas 四指标 / 工程实验
 - [`docs/CONFIG_GUIDE.md`](docs/CONFIG_GUIDE.md) — settings.yaml 逐项配置教程 + 常见配方（或在 AI 助手里说一句 "setup" 自动配置）
 - [`docs/specs/`](docs/specs/) — 子功能设计文档（Jev 基准 / Langfuse MVP，含可复跑 Runbook）
 - [`reports/BENCHMARK_REPORT.md`](reports/BENCHMARK_REPORT.md) — 基准详细分析
 
 ## 🗺️ Roadmap
 
-- [ ] min_score 质量门实验（查询级放行策略）
+- [x] 评测闭环：离线金标（hit@10 / MRR / nDCG@10）+ Ragas 四指标 + 分数回写 Langfuse trace
+- [x] CI 质量门禁：每次变更自动重跑检索评测，低于阈值阻断合并（`scripts/quality_gate.py`）
+- [x] min_score 质量门实验：三档实测（4.0 档 24% 空结果 → 默认改 1.0）
+- [x] Langfuse 实时上报：trace 收集即自动上报（OTLP，无需开关）
 - [ ] fiqa 数据集（5.7 万篇）全量对比
 - [ ] BGE + Jev 双信号融合实验
 - [ ] HTTP 模式叠加鉴权（Bearer token）
 - [ ] `ingest_document` 支持 PDF / 图片上传（base64 传输，图片走 Vision 描述后入索引）
 - [ ] 发布 PyPI 包（`uvx modular-rag-mcp` 一键安装，免克隆）
-- [x] Langfuse 实时上报（`query.py --langfuse` / Query Playground 开关；导出器走 Ingestion API）
 - [ ] MCP 工具链路实时上报（当前 MCP 查询仍用批量导出）
 
 ---
