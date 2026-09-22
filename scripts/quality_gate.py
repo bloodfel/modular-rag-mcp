@@ -88,7 +88,12 @@ def parse_args() -> argparse.Namespace:
 
 
 def _load_collection_map(collection: str) -> Dict[Tuple[str, int], str]:
-    """Map (repo-relative source, chunk_index) -> chunk id for the collection."""
+    """Map (repo-relative source, chunk_index) -> chunk id for the collection.
+
+    Also indexes (file basename, chunk_index): stored source paths are
+    absolute, so after the repo folder is renamed the exact relative match
+    fails and the basename keeps the gate working without a re-ingest.
+    """
     from src.core.settings import load_settings
     from src.libs.vector_store.chroma_store import ChromaStore
 
@@ -96,8 +101,10 @@ def _load_collection_map(collection: str) -> Dict[Tuple[str, int], str]:
     data = store.client.get_collection(collection).get(include=["metadatas"])
     mapping: Dict[Tuple[str, int], str] = {}
     for cid, meta in zip(data["ids"], data["metadatas"]):
-        key = (_relative(str(meta.get("source_path", ""))), meta.get("chunk_index"))
-        mapping[key] = cid
+        rel = _relative(str(meta.get("source_path", "")))
+        idx = meta.get("chunk_index")
+        mapping[(rel, idx)] = cid
+        mapping[(Path(rel).name, idx)] = cid
     return mapping
 
 
