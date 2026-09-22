@@ -111,6 +111,6 @@ nonexistent_traces.jsonl/
 # 内部资料（简历素材 / walk-through / 个人笔记），不对外发布
 internal/
 .zcode/
+infra/
+internal_reports/
 
-# 内部资料（简历素材 / walk-through / 个人笔记），不对外发布
-internal/
