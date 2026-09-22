@@ -106,3 +106,6 @@ traces.jsonl
 secrets.yaml
 nonexistent_traces.jsonl/
 .zcode/
+
+# 内部资料（简历素材 / walk-through / 个人笔记），不对外发布
+internal/
