@@ -61,9 +61,8 @@
 
 ## 6. 已知缺口 / 未做
 
-- CI 门禁已建：`scripts/quality_gate.py`（本地双向验证：达标 exit 0，
-  阈值抬高出 1 并落 `reports/quality_gate_fail.json`）+ `.github/workflows/quality-gate.yml`；
-  **GitHub 云端首跑待推送触发**。
+- CI 门禁已建并**云端验证通过**：GitHub Actions run 35721344680（4m44s），
+  hit 1.0000 / MRR 0.5050 / nDCG 0.5398——与本地基线几乎一致（跨机器稳定）。
 - mcp 2.x 迁移（当前钉 <2.0，功能正常但是旧 API）。
 - chunk id 可移植性 → CI 门禁的寻址方案待定（方案 A：source+index；方案 B：内容寻址 id）。
 - 60 条标注集未人工复核；Ragas 评委与生成器同为 DeepSeek，可能有同源偏好。
